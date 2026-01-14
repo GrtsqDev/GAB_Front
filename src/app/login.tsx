@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import { useState } from 'react'
 import { LinearGradient } from 'expo-linear-gradient'
-import { Ionicons } from '@expo/vector-icons'
 import PhoneInput from '@/components/forms/PhoneInput'
+import Checkbox from '@/components/forms/Checkbox'
 import Button from '@/components/Button'
 import LogoICANSVG from '@/assets/logo-ICAN.svg'
 
@@ -54,31 +54,16 @@ export default function LoginScreen() {
 					/>
 
 					{/* Чекбокс согласия */}
-					<TouchableOpacity
-						onPress={() => setIsAgreed(!isAgreed)}
-						className='flex-row items-start mt-4 mb-8'
-						activeOpacity={0.7}
-					>
-						<View
-							className={`w-5 h-5 rounded border-2 mr-3 mt-0.5 items-center justify-center ${
-								isAgreed ? 'bg-red-700 border-red-700' : 'border-gray-400'
-							}`}
-						>
-							{isAgreed && (
-								<Ionicons name='checkmark' size={14} color='white' />
-							)}
-						</View>
-						<Text className='text-gray-400 text-sm flex-1 leading-5'>
-							Я прочитал и согласен с{' '}
-							<Text className='text-white underline'>
-								Пользовательское соглашение
-							</Text>{' '}
-							и{' '}
-							<Text className='text-white underline'>
-								Политика конфиденциальности
+					<View className='mt-4 mb-8'>
+						<Checkbox value={isAgreed} onValueChange={setIsAgreed}>
+							<Text className='text-gray-400 text-sm flex-1 leading-5'>
+								Я прочитал и согласен с{' '}
+								<Text className='text-white underline'>
+									Пользовательское соглашение и Политика конфиденциальности
+								</Text>
 							</Text>
-						</Text>
-					</TouchableOpacity>
+						</Checkbox>
+					</View>
 
 					{/* Кнопка "Далее" */}
 					<View className='flex-1 justify-end pb-8'>
