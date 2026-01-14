@@ -7,6 +7,7 @@ import {
 	ScrollView
 } from 'react-native'
 import { useState } from 'react'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { LinearGradient } from 'expo-linear-gradient'
 import PhoneInput from '@/components/forms/PhoneInput'
 import Checkbox from '@/components/forms/Checkbox'
@@ -32,50 +33,50 @@ export default function LoginScreen() {
 				contentContainerStyle={{ flexGrow: 1 }}
 				showsVerticalScrollIndicator={false}
 			>
-				<View className='flex-1 px-6 pt-20'>
+				<View className='flex-1 px-6 justify-center'>
 					{/* Логотип и текст */}
-					<View className='items-center mb-32'>
+					<View className='items-center'>
 						<LogoICANSVG width={200} height={75} />
 						<Text className='text-white text-center text-base mt-6 font-normal'>
 							Умное пространство{'\n'}под контролем
 						</Text>
 					</View>
-
-					{/* Заголовок */}
-					<Text className='text-white text-lg font-medium mb-4'>
-						Введите номер телефона
-					</Text>
-
-					{/* Поле ввода телефона */}
-					<PhoneInput
-						value={phoneNumber}
-						onChange={setPhoneNumber}
-						placeholder='Номер телефона'
-					/>
-
-					{/* Чекбокс согласия */}
-					<View className='mt-4 mb-8'>
-						<Checkbox value={isAgreed} onValueChange={setIsAgreed}>
-							<Text className='text-gray-400 text-sm flex-1 leading-5'>
-								Я прочитал и согласен с{' '}
-								<Text className='text-white underline'>
-									Пользовательское соглашение и Политика конфиденциальности
-								</Text>
-							</Text>
-						</Checkbox>
-					</View>
-
-					{/* Кнопка "Далее" */}
-					<View className='flex-1 justify-end pb-8'>
-						<Button
-							title='Далее'
-							onPress={handleContinue}
-							variant='light'
-							disabled={!isButtonEnabled}
-						/>
-					</View>
 				</View>
 			</ScrollView>
+
+			<SafeAreaView edges={['bottom']} className='bg-black px-2 pb-4'>
+				{/* Заголовок */}
+				<Text className='text-white text-lg font-medium mb-4'>
+					Введите номер телефона
+				</Text>
+
+				{/* Поле ввода телефона */}
+				<PhoneInput
+					value={phoneNumber}
+					onChange={setPhoneNumber}
+					placeholder='Номер телефона'
+				/>
+
+				{/* Чекбокс согласия */}
+				<View className='mb-6'>
+					<Checkbox value={isAgreed} onValueChange={setIsAgreed}>
+						<Text className='text-gray-400 text-sm flex-1 leading-5'>
+							Я прочитал и согласен с{' '}
+							<Text className='text-white underline'>
+								Пользовательское соглашение и Политика конфиденциальности
+							</Text>
+						</Text>
+					</Checkbox>
+				</View>
+
+				{/* Кнопка "Далее" */}
+				<Button
+					title='Далее'
+					onPress={handleContinue}
+					variant='light'
+					disabled={!isButtonEnabled}
+				/>
+			</SafeAreaView>
 		</View>
 	)
 }
