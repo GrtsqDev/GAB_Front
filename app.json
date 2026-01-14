@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "WAWE",
+    "slug": "wawe",
+    "scheme": "wawe",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon-wawe.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash-icon-wawe.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "wawe.co",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon-wawe.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "wawe.co"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      "expo-localization"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "4fed82a0-d652-4d22-b2a5-716f805a9bc0"
+      }
+    }
+  }
+}
