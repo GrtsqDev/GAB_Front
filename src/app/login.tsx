@@ -1,32 +1,54 @@
-import { View, Text, ScrollView, KeyboardAvoidingView, Platform } from "react-native";
-import { useState } from "react";
+import { View, Text, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
+import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 import PhoneInput from "@/components/forms/PhoneInput";
 import Checkbox from "@/components/forms/Checkbox";
 import Button from "@/components/Button";
 import LogoICANSVG from "@/assets/logo-ICAN.svg";
 
 export default function LoginScreen() {
+    const router = useRouter();
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isAgreed, setIsAgreed] = useState(false);
+    const [keyboardHeight, setKeyboardHeight] = useState(0);
+
+    useEffect(() => {
+        const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (e) => {
+            setKeyboardHeight(e.endCoordinates.height);
+        });
+        const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+            setKeyboardHeight(0);
+        });
+
+        return () => {
+            keyboardDidShowListener.remove();
+            keyboardDidHideListener.remove();
+        };
+    }, []);
 
     const handleContinue = () => {
         if (phoneNumber.length === 10 && isAgreed) {
             console.log("Phone number:", phoneNumber);
-            // Здесь будет логика отправки кода
+            router.push({
+                pathname: "/otp",
+                params: { phoneNumber },
+            });
         }
     };
 
     const isButtonEnabled = phoneNumber.length === 10 && isAgreed;
 
     return (
-        <View className="flex-1 bg-black">
-            <KeyboardAvoidingView className="flex-1" behavior="padding" keyboardVerticalOffset={0}>
+        <SafeAreaView className="flex-1 bg-black">
+            <KeyboardAvoidingView
+                className="flex-1"
+                behavior={Platform.OS === "ios" ? "padding" : "height"}>
                 <ScrollView
-                    contentContainerStyle={{ flexGrow: 1 }}
+                    contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
-                    bounces={false}>
+                    contentInsetAdjustmentBehavior="automatic">
                     <View className="flex-1 px-6 justify-center">
                         {/* Логотип и текст */}
                         <View className="items-center">
@@ -40,7 +62,9 @@ export default function LoginScreen() {
                     </View>
 
                     {/* Форма внизу */}
-                    <View className="px-2 mb-2">
+                    <View
+                        className="px-2"
+                        style={{ marginBottom: keyboardHeight > 0 ? keyboardHeight : 8 }}>
                         {/* Заголовок */}
                         <Text className="text-white text-lg font-medium mb-4">
                             Введите номер телефона
@@ -71,6 +95,6 @@ export default function LoginScreen() {
                     </View>
                 </ScrollView>
             </KeyboardAvoidingView>
-        </View>
+        </SafeAreaView>
     );
 }
