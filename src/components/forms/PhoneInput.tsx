@@ -49,7 +49,6 @@ export default function PhoneInput({ onChange, placeholder = "" }: PhoneInputPro
                     onChangeText={handleTextChange}
                     value={displayValue}
                     keyboardType="phone-pad"
-                    className="bg-[#141515] border-0"
                     style={{ paddingLeft: 72, marginBottom: 0 }}
                 />
             </View>

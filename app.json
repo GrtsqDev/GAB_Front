@@ -1,46 +1,54 @@
 {
-	"expo": {
-		"name": "ICAN",
-		"slug": "ican",
-		"scheme": "ican",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"icon": "./assets/favicon.png",
-		"userInterfaceStyle": "light",
-		"newArchEnabled": true,
-		"splash": {
-			"image": "./assets/favicon.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
-		"ios": {
-			"supportsTablet": true,
-			"bundleIdentifier": "ican",
-			"infoPlist": {
-				"ITSAppUsesNonExemptEncryption": false
-			}
-		},
-		"android": {
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/favicon.png",
-				"backgroundColor": "#ffffff"
-			},
-			"package": "ican"
-		},
-		"web": {
-			"favicon": "./assets/favicon.png"
-		},
-		"plugins": [
-			"expo-router",
-			"expo-secure-store",
-			"expo-font",
-			"expo-localization"
-		],
-		"extra": {
-			"router": {},
-			"eas": {
-				"projectId": "4fed82a0-d652-4d22-b2a5-716f805a9bc0"
-			}
-		}
-	}
+    "expo": {
+        "name": "ICAN",
+        "slug": "ican",
+        "scheme": "ican",
+        "version": "1.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/favicon.png",
+        "userInterfaceStyle": "light",
+        "newArchEnabled": true,
+        "splash": {
+            "image": "./assets/favicon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "ican",
+            "infoPlist": {
+                "ITSAppUsesNonExemptEncryption": false,
+                "NSCameraUsageDescription": "Приложению необходим доступ к камере для фотографирования паспорта"
+            }
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/favicon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "ican",
+            "permissions": ["CAMERA"]
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "plugins": [
+            "expo-router",
+            "expo-secure-store",
+            "expo-font",
+            "expo-localization",
+            [
+                "expo-camera",
+                {
+                    "cameraPermission": "Разрешите $(PRODUCT_NAME) использовать вашу камеру для съемки паспорта"
+                }
+            ]
+        ],
+        "extra": {
+            "router": {},
+            "eas": {
+                "projectId": "4fed82a0-d652-4d22-b2a5-716f805a9bc0"
+            }
+        }
+    }
 }

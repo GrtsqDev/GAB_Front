@@ -9,12 +9,13 @@ import {
 } from "react-native";
 import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import Button from "@/components/Button";
 import Header from "@/components/Header";
 
 export default function OTPScreen() {
     const { phoneNumber } = useLocalSearchParams<{ phoneNumber: string }>();
+    const router = useRouter();
     const [otpCode, setOtpCode] = useState("");
     const [keyboardHeight, setKeyboardHeight] = useState(0);
     const [countdown, setCountdown] = useState(5);
@@ -45,6 +46,16 @@ export default function OTPScreen() {
         }
     }, [countdown]);
 
+    useEffect(() => {
+        if (otpCode.length === 4) {
+            // Имитация проверки OTP кода
+            // Когда будет бекенд, здесь будет запрос на сервер
+            setTimeout(() => {
+                router.push("/register");
+            }, 300);
+        }
+    }, [otpCode]);
+
     const handleResend = () => {
         if (countdown === 0) {
             setCountdown(5);
@@ -65,7 +76,7 @@ export default function OTPScreen() {
                     keyboardShouldPersistTaps="handled"
                     contentInsetAdjustmentBehavior="automatic">
                     <View
-                        className="flex-1 px-6 justify-center"
+                        className="flex-1 px-2 justify-center"
                         style={{ marginBottom: keyboardHeight > 0 ? keyboardHeight : 0 }}>
                         {/* Заголовок */}
                         <Text className="text-white text-[17px] font-medium leading-[22px] tracking-[0.4px] mb-6">
@@ -95,7 +106,7 @@ export default function OTPScreen() {
                             value={otpCode}
                             onChangeText={setOtpCode}
                             keyboardType="number-pad"
-                            maxLength={6}
+                            maxLength={4}
                         />
 
                         {/* Кнопка повторной отправки */}
