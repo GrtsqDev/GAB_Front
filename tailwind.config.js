@@ -12,6 +12,9 @@ module.exports = {
 				textPrimary: '#333333',
 				textWhite: '#FFFFFF',
 				border: '#E5E7EB'
+			},
+			fontFamily: {
+				interTight: ['InterTight_500Medium']
 			}
 		}
 	},
