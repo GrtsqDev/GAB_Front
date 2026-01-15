@@ -1,4 +1,13 @@
-import { View, Text, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from "react-native";
+import {
+    View,
+    Text,
+    ScrollView,
+    KeyboardAvoidingView,
+    Platform,
+    Keyboard,
+    LayoutAnimation,
+    UIManager,
+} from "react-native";
 import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
@@ -7,25 +16,33 @@ import Checkbox from "@/components/forms/Checkbox";
 import Button from "@/components/Button";
 import LogoICANSVG from "@/assets/logo-ICAN.svg";
 
+// Включаем LayoutAnimation для Android - это нам нужно для того чтобы инпут прижатый книзу нормально смещался при фокусе
+// if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
+//     UIManager.setLayoutAnimationEnabledExperimental(true);
+// }
+
 export default function LoginScreen() {
     const router = useRouter();
     const [phoneNumber, setPhoneNumber] = useState("");
     const [isAgreed, setIsAgreed] = useState(false);
-    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    // const [keyboardHeight, setKeyboardHeight] = useState(0);
 
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (e) => {
-            setKeyboardHeight(e.endCoordinates.height);
-        });
-        const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-            setKeyboardHeight(0);
-        });
+    // Ручное управление клавиатурой - закомментировано, т.к. используется системная настройка softwareKeyboardLayoutMode: "pan"
+    // useEffect(() => {
+    //     const keyboardShowListener = Keyboard.addListener("keyboardDidShow", (e) => {
+    //         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    //         setKeyboardHeight(e.endCoordinates.height);
+    //     });
+    //     const keyboardHideListener = Keyboard.addListener("keyboardDidHide", () => {
+    //         LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    //         setKeyboardHeight(0);
+    //     });
 
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
+    //     return () => {
+    //         keyboardShowListener.remove();
+    //         keyboardHideListener.remove();
+    //     };
+    // }, []);
 
     const handleContinue = () => {
         if (phoneNumber.length === 10 && isAgreed) {
@@ -43,7 +60,8 @@ export default function LoginScreen() {
         <SafeAreaView className="flex-1 bg-black">
             <KeyboardAvoidingView
                 className="flex-1"
-                behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                behavior={Platform.OS === "ios" ? "padding" : undefined}
+                enabled={Platform.OS === "ios"}>
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
                     showsVerticalScrollIndicator={false}
@@ -62,9 +80,7 @@ export default function LoginScreen() {
                     </View>
 
                     {/* Форма внизу */}
-                    <View
-                        className="px-2"
-                        style={{ marginBottom: keyboardHeight > 0 ? keyboardHeight : 8 }}>
+                    <View className="px-2 pb-2">
                         {/* Заголовок */}
                         <Text className="text-white text-lg font-medium mb-4">
                             Введите номер телефона

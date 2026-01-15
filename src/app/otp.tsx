@@ -17,7 +17,7 @@ export default function OTPScreen() {
     const { phoneNumber } = useLocalSearchParams<{ phoneNumber: string }>();
     const router = useRouter();
     const [otpCode, setOtpCode] = useState("");
-    const [keyboardHeight, setKeyboardHeight] = useState(0);
+    // const [keyboardHeight, setKeyboardHeight] = useState(0);
     const [countdown, setCountdown] = useState(5);
 
     const formatPhoneNumber = (phone: string) => {
@@ -25,19 +25,20 @@ export default function OTPScreen() {
         return `${phone.slice(0, 3)} ${phone.slice(3, 6)}-${phone.slice(6, 8)}-${phone.slice(8, 10)}`;
     };
 
-    useEffect(() => {
-        const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (e) => {
-            setKeyboardHeight(e.endCoordinates.height);
-        });
-        const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
-            setKeyboardHeight(0);
-        });
+    // Ручное управление клавиатурой - закомментировано, т.к. используется системная настройка softwareKeyboardLayoutMode: "pan"
+    // useEffect(() => {
+    //     const keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", (e) => {
+    //         setKeyboardHeight(e.endCoordinates.height);
+    //     });
+    //     const keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", () => {
+    //         setKeyboardHeight(0);
+    //     });
 
-        return () => {
-            keyboardDidShowListener.remove();
-            keyboardDidHideListener.remove();
-        };
-    }, []);
+    //     return () => {
+    //         keyboardDidShowListener.remove();
+    //         keyboardHideListener.remove();
+    //     };
+    // }, []);
 
     useEffect(() => {
         if (countdown > 0) {
@@ -69,15 +70,14 @@ export default function OTPScreen() {
             <Header variant="back-only" />
             <KeyboardAvoidingView
                 className="flex-1"
-                behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                behavior={Platform.OS === "ios" ? "padding" : undefined}
+                enabled={Platform.OS === "ios"}>
                 <ScrollView
                     contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
                     showsVerticalScrollIndicator={false}
                     keyboardShouldPersistTaps="handled"
                     contentInsetAdjustmentBehavior="automatic">
-                    <View
-                        className="flex-1 px-2 justify-center"
-                        style={{ marginBottom: keyboardHeight > 0 ? keyboardHeight : 0 }}>
+                    <View className="flex-1 px-2 justify-center">
                         {/* Заголовок */}
                         <Text className="text-white text-[17px] font-medium leading-[22px] tracking-[0.4px] mb-6">
                             Добро пожаловать!

@@ -26,8 +26,13 @@
                 "foregroundImage": "./assets/favicon.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "ican",
-            "permissions": ["CAMERA"]
+            "package": "com.daniilbortvin.ican",
+            "permissions": [
+                "CAMERA",
+                "android.permission.CAMERA",
+                "android.permission.RECORD_AUDIO"
+            ],
+            "softwareKeyboardLayoutMode": "pan"
         },
         "web": {
             "favicon": "./assets/favicon.png"
@@ -42,12 +47,13 @@
                 {
                     "cameraPermission": "Разрешите $(PRODUCT_NAME) использовать вашу камеру для съемки паспорта"
                 }
-            ]
+            ],
+            "./plugins/withExcludePackaging.js"
         ],
         "extra": {
             "router": {},
             "eas": {
-                "projectId": "4fed82a0-d652-4d22-b2a5-716f805a9bc0"
+                "projectId": "a5ca8665-369e-41ab-80e9-b4e58d406b7f"
             }
         }
     }

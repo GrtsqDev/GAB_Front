@@ -39,8 +39,9 @@ export default function RegisterScreen() {
     };
 
     const handleSubmit = () => {
-        // TODO: валидация и отправка данных
-        console.log("Submit registration");
+        // TODO: валидация и отправка данных на бек
+        // Пока бека нет, просто перенаправляем на главную страницу
+        router.push("/(protected)/(tabs)");
     };
 
     // пока что закоментил валидацию всех полей кроме чекбокса
