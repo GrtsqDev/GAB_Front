@@ -4,11 +4,12 @@ import Input from "@/components/forms/Input";
 import RussianFlag from "@/assets/russianFlag.svg";
 
 interface PhoneInputProps {
-    onChangeText: (phoneNumber: string) => void;
+    value?: string;
+    onChange?: (phoneNumber: string) => void;
     placeholder?: string;
 }
 
-export default function PhoneInput({ onChangeText, placeholder = "" }: PhoneInputProps) {
+export default function PhoneInput({ onChange, placeholder = "" }: PhoneInputProps) {
     const [displayValue, setDisplayValue] = useState("");
 
     const formatPhoneNumber = (text: string): string => {
@@ -30,15 +31,17 @@ export default function PhoneInput({ onChangeText, placeholder = "" }: PhoneInpu
         const formatted = formatPhoneNumber(text);
         setDisplayValue(formatted);
         // Передаём только цифры без форматирования
-        onChangeText(formatted.replace(/\D/g, ""));
+        if (onChange) {
+            onChange(formatted.replace(/\D/g, ""));
+        }
     };
 
     return (
-        <View className="w-full mb-4">
+        <View className="w-full">
             <View className="relative">
-                <View className="absolute left-3 top-3.5 flex-row items-center gap-2 z-10">
+                <View className="absolute left-5 flex-row items-center z-10" style={{ top: 16 }}>
                     <RussianFlag />
-                    <View className="w-px h-4 bg-gray-200" />
+                    <View className="w-px h-6 bg-gray-500 mx-3" />
                     <Text className="text-base text-gray-500">+7</Text>
                 </View>
                 <Input
@@ -47,7 +50,7 @@ export default function PhoneInput({ onChangeText, placeholder = "" }: PhoneInpu
                     value={displayValue}
                     keyboardType="phone-pad"
                     className="bg-[#141515] border-0"
-                    style={{ paddingLeft: 60, marginBottom: 0 }}
+                    style={{ paddingLeft: 72, marginBottom: 0 }}
                 />
             </View>
         </View>
