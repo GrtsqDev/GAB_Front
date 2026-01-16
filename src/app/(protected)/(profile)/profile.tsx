@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
 import { useRouter } from "expo-router";
-import * as ImagePicker from "expo-image-picker";
 import Header from "@/components/Header";
 import Input from "@/components/forms/Input";
 import Select from "@/components/forms/Select";
@@ -29,35 +28,12 @@ export default function ProfileScreen() {
         router.push("/(protected)/(profile)/profileEdit");
     };
 
-    const pickImage = async () => {
-        const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-        if (permissionResult.granted === false) {
-            Alert.alert(
-                "Нет доступа",
-                "Для выбора изображения необходимо предоставить доступ к галерее",
-            );
-            return;
-        }
-
-        const result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [1, 1],
-            quality: 1,
-        });
-
-        if (!result.canceled) {
-            setAvatarUri(result.assets[0].uri);
-        }
-    };
-
     return (
         <SafeAreaView className="flex-1 bg-[#0A0A0A]" edges={["top"]}>
             <Header variant="back-with-centered-title" title="Профиль" />
-            <ScrollView className="flex-1 px-4" showsVerticalScrollIndicator={false}>
+            <ScrollView className="flex-1 px-2" showsVerticalScrollIndicator={false}>
                 {/* Avatar Section */}
-                <View className="items-center mt-6 mb-8">
+                <View className="items-center mt-2 mb-8">
                     <TouchableOpacity onPress={navigateToEdit} activeOpacity={0.7}>
                         <Image
                             source={

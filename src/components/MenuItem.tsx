@@ -23,13 +23,11 @@ export default function MenuItem({
             onPress={onPress}
             activeOpacity={0.7}>
             <Text
-                className="text-white"
                 style={{
-                    fontFamily: "Inter Tight",
-                    fontWeight: "500",
                     fontSize: 16,
                     lineHeight: 16,
                     letterSpacing: 0.32,
+                    color: rightText ? "#5E5E5E" : "#FFFFFF",
                 }}>
                 {title}
             </Text>
@@ -37,8 +35,6 @@ export default function MenuItem({
                 {rightText ? (
                     <Text
                         style={{
-                            fontFamily: "Inter Tight",
-                            fontWeight: "500",
                             fontSize: 14,
                             color: rightTextColor,
                         }}>
