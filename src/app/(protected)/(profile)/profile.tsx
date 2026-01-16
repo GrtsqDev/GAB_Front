@@ -93,7 +93,7 @@ export default function ProfileScreen() {
                     <MenuItem
                         title="Карты"
                         onPress={() => {
-                            // TODO: Navigate to cards screen
+                            router.push("/(protected)/(profile)/cards");
                         }}
                     />
                     <MenuItem
@@ -105,7 +105,7 @@ export default function ProfileScreen() {
                     <MenuItem
                         title="Оферта"
                         onPress={() => {
-                            // TODO: Navigate to offer screen
+                            // TODO: Navigate to offerta screen
                         }}
                     />
                 </View>

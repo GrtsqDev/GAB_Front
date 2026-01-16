@@ -2,7 +2,7 @@ import { View, ScrollView } from "react-native";
 import { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "@/components/Header";
-import Switch from "@/components/Switch";
+import Switch from "@/components/forms/Switch";
 
 export default function SettingsScreen() {
     const [notificationsEnabled, setNotificationsEnabled] = useState(false);

@@ -14,11 +14,11 @@ function Input({ className, icon, rightIcon, floatingLabel = false, ...rest }: I
 
     return (
         <View
-            className={`flex-row items-center bg-[#141515] rounded-xl mb-2 px-3 ${showFloatingLabel ? "pt-5" : ""} ${className || ""}`}
+            className={`flex-row items-center bg-[#141515] rounded-xl mb-2 px-3 ${showFloatingLabel ? "pt-4" : ""} ${className || ""}`}
             style={{ minHeight: 52, position: "relative" }}>
             {showFloatingLabel && (
                 <Text
-                    className="absolute top-3 left-4 text-gray-500"
+                    className="absolute top-2 left-4 text-gray-500"
                     style={{
                         fontSize: 12,
                         letterSpacing: 0.2,
