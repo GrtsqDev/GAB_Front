@@ -60,7 +60,7 @@ export default function ProfileScreen() {
                         title={phone}
                         rightText="Сменить номер"
                         onPress={() => {
-                            // TODO: Navigate to change phone screen
+                            router.push("/(protected)/(profile)/numberChange");
                         }}
                     />
                     {/* City Select */}

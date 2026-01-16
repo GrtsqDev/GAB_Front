@@ -1,5 +1,6 @@
 import { View, Text, ScrollView, Image, TouchableOpacity, Alert } from "react-native";
 import { useState } from "react";
+import { useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import Header from "@/components/Header";
 import Input from "@/components/forms/Input";
@@ -17,6 +18,7 @@ const cities = [
 ];
 
 export default function ProfileEditScreen() {
+    const router = useRouter();
     const [name, setName] = useState("");
     const [surname, setSurname] = useState("");
     const [patronymic, setPatronymic] = useState("");
@@ -109,7 +111,7 @@ export default function ProfileEditScreen() {
                         title={phone}
                         rightText="Сменить номер"
                         onPress={() => {
-                            // TODO: Navigate to change phone screen
+                            router.push("/(protected)/(profile)/numberChange");
                         }}
                     />
                 </View>
