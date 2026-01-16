@@ -78,7 +78,7 @@ export default function ProfileScreen() {
                         balance={1000}
                         hasDebt={true}
                         onViewDebtPress={() => {
-                            // TODO: Navigate to debt details
+                            router.push("/(protected)/(profile)/debt");
                         }}
                     />
                 </View>
