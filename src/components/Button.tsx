@@ -1,4 +1,4 @@
-import { Pressable, PressableProps, Text } from "react-native";
+import { Pressable, PressableProps, Text, ViewStyle } from "react-native";
 import React from "react";
 
 type ButtonProps = {
@@ -7,6 +7,7 @@ type ButtonProps = {
     variant?: "light" | "dark" | "outline";
     size?: "large" | "medium" | "small";
     disabled?: boolean;
+    style?: ViewStyle;
 } & PressableProps;
 
 function Button({
@@ -15,6 +16,7 @@ function Button({
     variant = "light",
     size = "large",
     disabled,
+    style,
     ...rest
 }: ButtonProps) {
     const isLight = variant === "light";
@@ -43,6 +45,7 @@ function Button({
                         ? "bg-white"
                         : "bg-black"
             }`}
+            style={style}
             onPress={onPress}
             disabled={disabled}
             {...rest}>

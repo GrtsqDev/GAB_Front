@@ -38,12 +38,10 @@ export default function Header({
                     <Text className="text-gray-400 text-xs mt-0.5">{date}</Text>
                 </View>
                 <View className="flex-1 items-end">
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => router.push("/(protected)/profile")}>
                         <Image
                             source={
-                                avatarUrl
-                                    ? { uri: avatarUrl }
-                                    : require("@/assets/home/defoultAva.png")
+                                avatarUrl ? { uri: avatarUrl } : require("@/assets/defoultAva.png")
                             }
                             className="w-10 h-10 rounded-full"
                         />

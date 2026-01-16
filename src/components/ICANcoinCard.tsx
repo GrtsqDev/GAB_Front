@@ -7,7 +7,7 @@ type ICANcoinCardProps = {
 
 export default function ICANcoinCard({ balance }: ICANcoinCardProps) {
     return (
-        <View className="bg-[#1A1A1A] rounded-xl p-4 flex-row items-center justify-between">
+        <View className="bg-[#141515] rounded-xl p-4 flex-row items-center justify-between">
             <Text className="text-white text-[16px] leading-[1.2] tracking-[0.32px] font-medium">
                 ICANcoin
             </Text>
