@@ -99,7 +99,7 @@ export default function ProfileScreen() {
                     <MenuItem
                         title="Настройки"
                         onPress={() => {
-                            // TODO: Navigate to settings screen
+                            router.push("/(protected)/(profile)/settings");
                         }}
                     />
                     <MenuItem

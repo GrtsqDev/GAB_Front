@@ -9,6 +9,7 @@ type HeaderProps = {
     date?: string;
     avatarUrl?: string;
     onBackPress?: () => void;
+    backTo?: string;
 };
 
 export default function Header({
@@ -18,12 +19,15 @@ export default function Header({
     date,
     avatarUrl,
     onBackPress,
+    backTo,
 }: HeaderProps) {
     const router = useRouter();
 
     const handleBackPress = () => {
         if (onBackPress) {
             onBackPress();
+        } else if (backTo) {
+            router.push(backTo);
         } else {
             router.back();
         }

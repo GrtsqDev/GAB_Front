@@ -63,7 +63,7 @@ export default function ProfileEditScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-[#0A0A0A]" edges={["top"]}>
-            <Header variant="back-only" />
+            <Header variant="back-only" backTo="/profile" />
             <ScrollView className="flex-1 px-2" showsVerticalScrollIndicator={false}>
                 {/* Avatar Section */}
                 <View className="items-center mt-6 mb-8">
