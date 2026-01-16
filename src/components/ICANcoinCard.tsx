@@ -11,7 +11,7 @@ export default function ICANcoinCard({ balance }: ICANcoinCardProps) {
             <Text className="text-white text-[16px] leading-[1.2] tracking-[0.32px] font-medium">
                 ICANcoin
             </Text>
-            <View className="flex-row items-center gap-2">
+            <View className="flex-row items-center" style={{ gap: 8 }}>
                 <Text className="text-white text-lg font-semibold">{balance}</Text>
                 <ICANcoinSVG width={10} height={16} />
             </View>

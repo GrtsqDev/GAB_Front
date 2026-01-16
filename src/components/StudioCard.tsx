@@ -45,7 +45,7 @@ export default function StudioCard({
                 </Text>
             </View>
 
-            <View className="flex-row gap-3">
+            <View className="flex-row" style={{ gap: 12 }}>
                 <View className="flex-1">
                     <Button
                         title="Забронировать"

@@ -39,7 +39,7 @@ export default function PhoneInput({ onChange, placeholder = "" }: PhoneInputPro
     return (
         <View className="w-full">
             <View className="relative">
-                <View className="absolute left-5 flex-row items-center z-10" style={{ top: 16 }}>
+                <View className="absolute left-5 flex-row items-center z-10" style={{ top: 14 }}>
                     <RussianFlag />
                     <View className="w-px h-6 bg-gray-500 mx-3" />
                     <Text className="text-base text-gray-500">+7</Text>
@@ -49,7 +49,7 @@ export default function PhoneInput({ onChange, placeholder = "" }: PhoneInputPro
                     onChangeText={handleTextChange}
                     value={displayValue}
                     keyboardType="phone-pad"
-                    style={{ paddingLeft: 72, marginBottom: 0 }}
+                    style={{ paddingLeft: 75, marginBottom: 0 }}
                 />
             </View>
         </View>

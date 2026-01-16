@@ -1,10 +1,7 @@
 module.exports = function (api) {
     api.cache(true);
     return {
-        presets: [
-            "babel-preset-expo",
-            ["nativewind/babel", { tailwindcssPath: "./tailwind.config.js" }],
-        ],
+        presets: ["babel-preset-expo"],
         plugins: [
             [
                 "babel-plugin-root-import",
@@ -13,6 +10,7 @@ module.exports = function (api) {
                     rootPathPrefix: "@/",
                 },
             ],
+            "nativewind/babel",
             "react-native-reanimated/plugin",
         ],
     };

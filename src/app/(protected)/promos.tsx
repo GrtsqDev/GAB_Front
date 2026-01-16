@@ -29,7 +29,7 @@ export default function PromosScreen() {
             <Header variant="back-with-centered-title" title="Акции" />
 
             <ScrollView className="flex-1 px-2" showsVerticalScrollIndicator={false}>
-                <View className="gap-3 pb-6 pt-6">
+                <View className="pb-6 pt-6" style={{ gap: 12 }}>
                     {promos.map((promo) => (
                         <PromoCard
                             key={promo.id}

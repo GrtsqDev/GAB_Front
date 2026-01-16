@@ -47,8 +47,7 @@
                 {
                     "cameraPermission": "Разрешите $(PRODUCT_NAME) использовать вашу камеру для съемки паспорта"
                 }
-            ],
-            "./plugins/withExcludePackaging.js"
+            ]
         ],
         "extra": {
             "router": {},

@@ -101,23 +101,25 @@ export default function RegisterScreen() {
                     {/* Паспорт Section */}
                     <View className="mb-2">
                         <Text className="text-[#5E5E5E] text-sm mb-2 ">Паспорт</Text>
-                        <View className="flex-row gap-2 mb-2">
-                            <Input
-                                placeholder="Серия паспорта"
-                                value={passportSeries}
-                                onChangeText={setPassportSeries}
-                                keyboardType="numeric"
-                                maxLength={4}
-                                className="flex-1"
-                            />
-                            <Input
-                                placeholder="Номер паспорта"
-                                value={passportNumber}
-                                onChangeText={setPassportNumber}
-                                keyboardType="numeric"
-                                maxLength={6}
-                                className="flex-1"
-                            />
+                        <View className="flex-row mb-2" style={{ gap: 8 }}>
+                            <View className="flex-1">
+                                <Input
+                                    placeholder="Серия паспорта"
+                                    value={passportSeries}
+                                    onChangeText={setPassportSeries}
+                                    keyboardType="numeric"
+                                    maxLength={4}
+                                />
+                            </View>
+                            <View className="flex-1">
+                                <Input
+                                    placeholder="Номер паспорта"
+                                    value={passportNumber}
+                                    onChangeText={setPassportNumber}
+                                    keyboardType="numeric"
+                                    maxLength={6}
+                                />
+                            </View>
                         </View>
                         <Input
                             placeholder="Кем выдан"
