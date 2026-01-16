@@ -1,5 +1,6 @@
 import { View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
 import Header from "@/components/Header";
 import DebtCard from "@/components/DebtCard";
 
@@ -15,6 +16,13 @@ const debts = [
 ];
 
 export default function DebtScreen() {
+    const router = useRouter();
+
+    const handleDebtPress = (debtId: number) => {
+        router.push("/(protected)/order");
+        //router.push(`/(protected)/(profile)/order?id=${debtId}`);
+    };
+
     return (
         <SafeAreaView className="flex-1 bg-[#0A0A0A]" edges={["top"]}>
             <Header variant="back-with-centered-title" title="Задолженность" />
@@ -27,6 +35,7 @@ export default function DebtScreen() {
                             date={debt.date}
                             time={debt.time}
                             hasDebt={debt.hasDebt}
+                            onPress={() => handleDebtPress(debt.id)}
                         />
                     ))}
                 </View>

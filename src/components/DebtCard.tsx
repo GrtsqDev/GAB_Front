@@ -1,15 +1,17 @@
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 type DebtCardProps = {
     studioName: string;
     date: string;
     time: string;
     hasDebt?: boolean;
+    onPress?: () => void;
 };
 
-export default function DebtCard({ studioName, date, time, hasDebt = true }: DebtCardProps) {
+export default function DebtCard({ studioName, date, time, hasDebt = true, onPress }: DebtCardProps) {
     return (
-        <View className="w-full rounded-2xl overflow-hidden bg-[#141515] p-4 mb-1">
+        <TouchableOpacity onPress={onPress} activeOpacity={0.7}>
+            <View className="w-full rounded-2xl overflow-hidden bg-[#141515] p-4 mb-1">
             <View className="flex-row items-start justify-between mb-1">
                 <Text className="text-white text-base flex-1">{studioName}</Text>
                 <Text className="text-white text-base">{date}</Text>
@@ -25,5 +27,6 @@ export default function DebtCard({ studioName, date, time, hasDebt = true }: Deb
                 </View>
             )}
         </View>
+        </TouchableOpacity>
     );
 }
